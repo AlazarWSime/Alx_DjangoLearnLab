@@ -20,13 +20,36 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8pwht&0_le_zfg2-6sga^3guo!zz&^@@ro!g*x2!4fnbj5wj_u'
+SECRET_KEY = 'django-insecure-7tamh^4hcpf#()d@bb+y9a-qbs+ef)uh+3-!b7r*25famr$^jh'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# SECURITY WARNING: don't run with debug tuTruerned on in production!
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
+# Enable XSS Protection
+SECURE_BROWSER_XSS_FILTER = True
+
+# Enable X-Frame-Options to prevent clickjacking
+X_FRAME_OPTIONS = 'DENY'  # Options: DENY, SAMEORIGIN, or ALLOW-FROM uri
+
+# Prevent MIME type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Ensure cookies are sent over HTTPS only# Enable XSS Protection
+SECURE_BROWSER_XSS_FILTER = True
+
+# Enable X-Frame-Options to prevent clickjacking
+X_FRAME_OPTIONS = 'DENY'  # Options: DENY, SAMEORIGIN, or ALLOW-FROM uri
+
+# Prevent MIME type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Ensure cookies are sent over HTTPS only
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 # Application definition
 
@@ -37,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bookshelf',
 ]
 
 MIDDLEWARE = [
@@ -98,7 +122,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
+# Configure Django to recognize the X-Forwarded-Proto header
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Redirect all non-HTTPS requests to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# HTTP Strict Transport Security (HSTS) settings
+SECURE_HSTS_SECONDS = 31536000  # One year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Include all subdomains
+SECURE_HSTS_PRELOAD = True  # Allow preloading
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 

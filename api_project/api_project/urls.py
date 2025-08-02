@@ -21,4 +21,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')), # This includes all API endpoints
+        path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
 ]

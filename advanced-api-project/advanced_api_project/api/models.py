@@ -18,7 +18,7 @@ class Book(models.Model):
      - publication_year: integer year the book was published.
      - authour: ForeignKey to Author (related_name = 'books').
      """
-    title = models.CharField(max_length = 500)
+    title = models.CharField(max_length = 255)
     publication_year = models.IntegerField()
     author = models.ForeignKey(Author, related_name = 'books', #lets us access author.books.all(0)
                                on_delete = models.CASCADE)

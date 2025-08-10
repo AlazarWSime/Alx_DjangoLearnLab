@@ -7,6 +7,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'publication_year', 'author')
+      list_display = ('id', 'title', 'publication_year', 'author')
+      search_fields = ('title',)
+      list_filter = ('publication_year',)
 
 # Register your models here.

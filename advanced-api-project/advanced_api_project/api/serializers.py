@@ -6,18 +6,21 @@ import datetime # imported module to get access to the current year
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fieds = '__all__'
+        fields = '__all__'
 
-    # function used to make sure that the publication year is not in the future. value is obtained from the request object
-    def validate(self, value):
+    # Use field-level validation for publication_year
+    def validate_publication_year(self, value):
         current_year = datetime.date.today().year
         if value > current_year:
-            serializers.ValidationError("Publication can not exceed teh current year")
+            # Raise the exception to halt validation
+            raise serializers.ValidationError("Publication year cannot be in the future.")
         return value
 
 
 class AuthorSerializer(serializers.ModelSerializer):
-    books = 'BookSerializer'(many=True, read_only=True)
+    # Use the actual class, not a string representation
+    books = BookSerializer(many=True, read_only=True)
     class Meta:
         model = Author
-        fields = ['name']
+        # Include the nested 'books' serializer in the fields
+        fields = ['id', 'name', 'books']

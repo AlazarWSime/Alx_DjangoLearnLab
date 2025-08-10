@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7tamh^4hcpf#()d@bb+y9a-qbs+ef)uh+3-!b7r*25famr$^jh
 # SECURITY WARNING: don't run with debug tuTruerned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Enable XSS Protection
 SECURE_BROWSER_XSS_FILTER = True

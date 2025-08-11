@@ -20,5 +20,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),  # Include the router URLs for the API which is used to route requests to the viewsets.
+    path('api/', include('api.urls')),  # Include the router URLs for the API which is used to route requests to the viewsets.
 ]
